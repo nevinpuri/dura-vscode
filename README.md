@@ -1,6 +1,6 @@
 # dura-vscode README
 
-A vscode extension which complements [dura](https://github.com/tkellogg/dura)
+A vscode extension which lets you use [dura](https://github.com/tkellogg/dura) from within vscode
 
 ## Features
 

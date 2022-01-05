@@ -11,8 +11,10 @@ class DuraWrapper {
   }
   public startDura() {
     this._ls = child.spawn("dura", ["serve"]);
+    if (this._ls.exitCode) {
+      vscode.window.showErrorMessage("Failed to start dura");
+    }
     return this._ls.exitCode;
-    console.log(this._ls);
   }
   public stopDura() {
     if (!this._ls) {

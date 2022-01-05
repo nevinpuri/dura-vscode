@@ -19,30 +19,19 @@ export async function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(
-    "dura-vscode.helloWorld",
-    async () => {
-      const ls = child.spawn("ls", ["/home/nevin/Desktop"]);
-
-      ls.stdout.on("data", (data) => {
-        // console.log(data.toString());
-      });
-
-      ls.on("close", (code) => {
-        console.log(code);
-      });
-      // The code you place here will be executed every time your command is executed
-      // Display a message box to the user
-      vscode.window.showInformationMessage("Hello World from dura-vscode!");
-    }
-  );
 
   const checkWorkspaces = () => {
+    if (
+      !vscode.workspace
+        .getConfiguration("dura-vscode")
+        .get<boolean>("checkWorkspaces")
+    ) {
+      return;
+    }
     const workspaces = getWorkspaces();
     if (!workspaces) {
       return;
     }
-    console.log(workspaces);
     workspaces.map(async (workspace) => {
       if (!(await dura.isWatched(workspace.uri.path))) {
         vscode.window
@@ -52,11 +41,19 @@ export async function activate(context: vscode.ExtensionContext) {
             "No",
             "Don't show again"
           )
-          .then((result) => {
-            if (result === "Yes") {
-              dura.watchDir(workspace.uri.path);
-            } else {
-              return;
+          .then(async (result) => {
+            switch (result) {
+              case "Yes": {
+                await dura.watchDir(workspace.uri.path);
+              }
+              case "No": {
+                return;
+              }
+              case "Don't show again": {
+              }
+              default: {
+                return;
+              }
             }
           });
       }
@@ -66,27 +63,39 @@ export async function activate(context: vscode.ExtensionContext) {
   checkWorkspaces();
 
   if (!(await isRunning())) {
-    vscode.window
-      .showInformationMessage(
-        "dura is not currently running. Would you like to start it?",
-        "Yes",
-        "No",
-        "Automatically Start",
-        "Don't show again"
-      )
-      .then((response) => {
-        if (response === "Yes") {
-          let exitCode = dura.startDura();
-          if (exitCode) {
-            // because the exit code is null if dura is running
-            vscode.window.showErrorMessage("Failed to start dura");
+    if (
+      vscode.workspace.getConfiguration("dura-vscode").get("startPrompt") ===
+      "prompt"
+    ) {
+      vscode.window
+        .showInformationMessage(
+          "dura is not currently running. Would you like to start it?",
+          "Yes",
+          "No",
+          "Auto Start",
+          "Don't show again"
+        )
+        .then((response) => {
+          switch (response) {
+            case "Yes": {
+              dura.startDura();
+            }
+            case "No": {
+              return;
+            }
+            case "Auto Start": {
+              // set config
+            }
+            case "Don't show again": {
+              // set config
+            }
+            default: {
+              return;
+            }
           }
-        } else {
-          return;
-        }
-      });
+        });
+    }
   }
-  console.log(await dura.isWatched("ahsdgh"));
 }
 
 // this method is called when your extension is deactivated

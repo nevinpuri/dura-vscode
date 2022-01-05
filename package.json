@@ -19,7 +19,22 @@
         "command": "dura-vscode.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Dura-VSCode",
+      "properties": {
+        "startPrompt": {
+          "type": "string",
+          "description": "Whether or not to check if dura is running on startup",
+          "default": "prompt"
+        },
+        "checkWorkspaces": {
+          "type": "boolean",
+          "description": "Whether or not to prompt to watch directories",
+          "default": true
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
