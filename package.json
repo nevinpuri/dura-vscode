@@ -1,7 +1,7 @@
 {
   "name": "dura-vscode",
   "displayName": "dura-vscode",
-  "description": "A vscode extension for dura",
+  "description": "Use dura in vscode",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.63.0"
