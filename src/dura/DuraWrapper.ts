@@ -30,7 +30,8 @@ class DuraWrapper {
         }
         if (data) {
           try {
-            resolve(JSON.parse(data.toString()));
+            let json = JSON.parse(data.toString());
+            resolve(json);
           } catch (err: any) {
             reject(err);
           }
@@ -39,24 +40,27 @@ class DuraWrapper {
     });
   }
   public async isWatched(directory: string) {
-    const config = await this.getConfig();
-    if (!config) {
-      throw Error("No config");
-    }
+    try {
+      const config = await this.getConfig();
+      console.log(config);
 
-    if (!config.repos) {
-      throw Error("No repos in config");
-    }
+      if (!config.repos) {
+        throw Error("No repos in config");
+      }
 
-    let repos = Object.keys(config.repos);
-    if (repos.length < 1) {
-      return false;
-    }
+      let repos = Object.keys(config.repos);
+      if (repos.length < 1) {
+        return false;
+      }
 
-    if (!repos.includes(directory)) {
-      return false;
-    } else {
-      return true;
+      if (!repos.includes(directory)) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (err: any) {
+      console.log(err);
+      vscode.window.showErrorMessage(err.message);
     }
   }
   public async watchDir(directory: string) {

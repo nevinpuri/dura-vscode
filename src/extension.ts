@@ -50,6 +50,9 @@ export async function activate(context: vscode.ExtensionContext) {
                 return;
               }
               case "Don't show again": {
+                vscode.workspace
+                  .getConfiguration("dura-vscode")
+                  .update("checkWorkspace", false);
               }
               default: {
                 return;
@@ -63,10 +66,11 @@ export async function activate(context: vscode.ExtensionContext) {
   checkWorkspaces();
 
   if (!(await isRunning())) {
-    if (
-      vscode.workspace.getConfiguration("dura-vscode").get("startPrompt") ===
-      "prompt"
-    ) {
+    let start = vscode.workspace
+      .getConfiguration("dura-vscode")
+      .get<string>("startPrompt");
+    console.log(start);
+    if (start === "prompt") {
       vscode.window
         .showInformationMessage(
           "dura is not currently running. Would you like to start it?",
@@ -84,16 +88,24 @@ export async function activate(context: vscode.ExtensionContext) {
               return;
             }
             case "Auto Start": {
-              // set config
+              vscode.workspace
+                .getConfiguration("dura-vscode")
+                .update("startPrompt", "autoStart");
+              dura.startDura();
             }
             case "Don't show again": {
-              // set config
+              vscode.workspace
+                .getConfiguration("dura-vscode")
+                .update("startPrompt", "dont-show");
             }
             default: {
               return;
             }
           }
         });
+    } else if (start === "autoStart") {
+      dura.startDura();
+      console.log("auto started dura");
     }
   }
 }

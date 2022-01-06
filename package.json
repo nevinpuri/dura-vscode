@@ -21,16 +21,16 @@
       }
     ],
     "configuration": {
-      "title": "Dura-VSCode",
+      "title": "dura-vscode",
       "properties": {
-        "startPrompt": {
+        "dura-vscode.startPrompt": {
           "type": "string",
           "description": "Whether or not to check if dura is running on startup",
           "default": "prompt"
         },
-        "checkWorkspaces": {
+        "dura-vscode.checkWorkspaces": {
           "type": "boolean",
-          "description": "Whether or not to prompt to watch directories",
+          "description": "Whether or not to prompt to watch directories. Values: prompt, autoStart.",
           "default": true
         }
       }
