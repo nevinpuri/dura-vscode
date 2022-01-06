@@ -17,7 +17,7 @@ A vscode extension which lets you use [dura](https://github.com/tkellogg/dura) f
 
 ## Requirements
 
-Dura is needed for this extension to work properly. You can download it from the official [GitHub Repository](https://tkellogg/dura)
+Dura is needed for this extension to work properly. You can download it from the official [GitHub Repository](https://github.com/tkellogg/dura)
 
 ## Extension Settings
 
