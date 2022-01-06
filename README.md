@@ -1,8 +1,8 @@
-# dura-vscode README
-
-![Demo](https://github.com/Nevin1901/dura-vscode/assets/demo.gif)
+# dura-vscode
 
 A vscode extension which lets you use [dura](https://github.com/tkellogg/dura) from within vscode
+
+![Demo](assets/demo.gif)
 
 ## Features
 
