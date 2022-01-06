@@ -20,6 +20,26 @@ export async function activate(context: vscode.ExtensionContext) {
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "dura-vscode.watchCurrentDirectory",
+      async () => {
+        const workspaces = getWorkspaces();
+        if (!workspaces) {
+          return;
+        }
+        workspaces.map(async (workspace) => {
+          if (!(await dura.isWatched(workspace.uri.path))) {
+            await dura.watchDir(workspace.uri.path);
+            vscode.window.showInformationMessage(
+              `Started watching ${workspace.uri.path}`
+            );
+          }
+        });
+      }
+    )
+  );
+
   const checkWorkspaces = () => {
     if (
       !vscode.workspace

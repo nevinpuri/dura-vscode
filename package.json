@@ -16,8 +16,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "dura-vscode.helloWorld",
-        "title": "Hello World"
+        "command": "dura-vscode.watchCurrentDirectory",
+        "title": "Dura-Vscode: Watch current directory"
       }
     ],
     "configuration": {
@@ -25,12 +25,12 @@
       "properties": {
         "dura-vscode.startPrompt": {
           "type": "string",
-          "description": "Whether or not to check if dura is running on startup",
+          "description": "Whether or not to check if dura is running on startup. Values: prompt, autoStart.",
           "default": "prompt"
         },
         "dura-vscode.checkWorkspaces": {
           "type": "boolean",
-          "description": "Whether or not to prompt to watch directories. Values: prompt, autoStart.",
+          "description": "Whether or not to prompt to watch directories.",
           "default": true
         }
       }

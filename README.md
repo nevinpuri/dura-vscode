@@ -1,71 +1,35 @@
 # dura-vscode README
 
+![Demo](https://github.com/Nevin1901/dura-vscode/assets/demo.gif)
+
 A vscode extension which lets you use [dura](https://github.com/tkellogg/dura) from within vscode
 
 ## Features
 
-- Launch dura and watch folders from vscode
+- Automatically launch dura and watch folders from vscode
 
 ## TODO
 
 - Show icon at bottom which tells the user if dura is running or not
 - Show dura snapshots in IDE, and allow user to see the differences between them
+- Have option to automatically watch directories when you open a workspace
 - Auto download dura binary if not found (maybe)
 
 ## Requirements
 
-Dura is needed for this extension to work properly. You can download it from the official [GitHub Page](https://tkellogg/dura)
+Dura is needed for this extension to work properly. You can download it from the official [GitHub Repository](https://tkellogg/dura)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-- `myExtension.enable`: enable/disable this extension
-- `myExtension.thing`: set to `blah` to do something
+- `dura-vscode.startPrompt`: Choose whether or not to show the "dura is not running" prompt on startup. Possible values: prompt: autoStart
+- `dura-vscode.checkWorkspaces`: Whether or not to show the prompt to watch directories
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### [0.0.1]
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-- Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-- Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Initial release
